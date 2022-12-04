@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    @page {
+        margin: 0.4cm;
+        font-family: Arial
+    }
+    p {
+    font-family: Times New Roman
+    }
+
+</style>
+<title>RSS Feed</title>
+</head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<body>
+<table align="left" cellpadding="5" cellspacing="10" style="width:800px">
+	{% for news in news_list %}
+	<tbody>
+		<tr>
+			<td colspan="2" style="text-align:left; vertical-align:top"><span style="font-size:14px"><span style="color:#999999">RSS feed:&nbsp;<a href="{{news['url']}}">{{news['rss_header']}}&nbsp;</a></span></span></td>
+		</tr>
+		<tr>
+			{% if news['img_location'] != 'Empty' %} <td rowspan="5" style="vertical-align:top; width:300px"><a href="{{news['img_link']}}"><img alt="" src="{{news['img_location']}}" style="float:left; margin:10px 0px; width:250px" /></a>
+			<p>&nbsp;</p>
+			</td>
+			{% else %}
+			<td rowspan="5" style="vertical-align:top; width:300px">
+			<p>&nbsp;<span style="font-size:16px"><span style="color:#999999"> </span> </span></p>
+			</td>
+			{% endif %}
+			<th style="text-align:left; vertical-align:top; width:500px"><span style="font-size:20px"><strong><a href="{{news['link']}}">{{news['title']}}</a></strong></span></th>
+		</tr>
+		<tr>
+			<th style="text-align:right; vertical-align:top"><span style="font-size:14px"><span style="color:#c0392b">{{news['pubdate']}}</span></span></th>
+		</tr>
+		<tr>
+			<td style="text-align:justify; vertical-align:top; width:500px">
+			<p><span style="font-size:16px"><span style="color:#999999">{% if news['description'] == 'Empty' %} No description found {% else %} {{news['description']}} {% endif %} </span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:justify; vertical-align:top; width:500px">&nbsp;</td>
+		</tr>
+		<tr>
+
+		</tr>
+		<tr>
+			<td style="vertical-align:top">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+
+	</tbody>
+	{% endfor %}
+</table>
+
+</body>
+</html>

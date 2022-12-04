@@ -1,0 +1,91 @@
+<html>
+<head>
+    <title>RSS reader web app</title>
+    <link href="{{ url_for('static', path='/css/bootstrap.css') }}" rel="stylesheet">
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<body>
+
+<div style="margin-top: 50px;" class="ui container">
+    <h1 class="ui center aligned header">RSS reader web app</h1>
+<div class="card text-left" style="width: 32rem;align:center;">
+    <div class="card-body">
+        <b class="ui center aligned header" style="color:Blue;">Read news:</b>
+        <div style="margin-top: 10px;" class="ui container">
+
+        <form action="/read-rss" method="post">
+            <div class="mb-3">
+                <label for="rss_url" class="form-label">URL</label>
+                <input type="text" class="form-control" id="rss_url"  name="rss_url" placeholder="Enter URL (http://www.example.com/rss)">
+            </div>
+            <div class="mb-3">
+                <label for="limit_arg" class="form-label">Number of news</label>
+                <input type="text" class="form-control" id="limit_arg"  name="limit_arg" placeholder="limit output number of news">
+            </div>
+            <div class="mb-3">
+                <label for="date_arg" class="form-label">Publication date (YYYYMMDD)</label>
+                <input type="text" class="form-control" id="date_arg"  name="date_arg" placeholder="enter a date to get news from cache">
+            </div>
+
+            <label for="date_arg" class="form-label">Convert and save news </label>
+
+            <div class="input-group mb-3">
+            <div class="input-group-text">
+                <input class="form-check-input" type="checkbox" name="save_pdf" value="1">
+            </div>
+                <input type="text" class="form-control" name="filename_pdf"  placeholder="In pdf format, enter filename (example.pdf)">
+            </div>
+            <div class="input-group mb-3">
+            <div class="input-group-text">
+                <input class="form-check-input" type="checkbox" name="save_html" value="1">
+            </div>
+                <input type="text" class="form-control" name="filename_html" placeholder="In html format, enter filename (example.html)">
+            </div>
+            <div class="input-group mb-3">
+            <div class="input-group-text">
+                <input class="form-check-input" type="checkbox" name="save_epub" value="1">
+            </div>
+                <input type="text" class="form-control" name="filename_epub" placeholder="In epub format, enter filename (example.epub)">
+            </div>
+
+            <input type="submit" class="btn btn-primary", value="Read"> &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="btn btn-danger">
+
+
+        </form>
+
+        </div>
+    </div>
+    <div class="card-body">
+        <b class="ui center aligned header" style="color:Blue;">Read news directly from cache:</b>
+        <div style="margin-top: 10px;" class="ui container">
+        <form action="/read-cache" method="post">
+                 <div class="mb-3">
+                     <label for="limit_arg_cache" class="form-label">Available RSS sources</label>
+                     <select class="form-select", name="dropdown_choices">
+                            {% for rss in rss_list %}
+                        <option value={{rss['rss_url']}}>{{ rss['rss_header'] }}</option>
+                            {% endfor %}
+                         <option value="all">Select all</option>
+                     </select>
+                </div>
+                 <div class="mb-3">
+                    <label for="limit_arg_cache" class="form-label">Number of news</label>
+                    <input type="text" class="form-control" id="limit_arg_cache"  name="limit_arg_cache" placeholder="limit output number of news">
+                </div>
+                <div class="mb-3">
+                    <label for="date_arg_cache" class="form-label">Publication date (YYYYMMDD)</label>
+                    <input type="text" class="form-control" id="date_arg_cache"  name="date_arg_cache" placeholder="enter a date to get news from cache">
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Read from cache"> &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="btn btn-danger">
+        </form>
+        </div>
+    </div>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>

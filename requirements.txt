@@ -1,0 +1,13 @@
+ansicolors~=1.1.8
+beautifulsoup4~=4.10.0
+colorlog~=6.6.0
+EbookLib~=0.17.1
+Jinja2~=3.1.1
+lxml~=4.8.0
+Pillow~=9.1.0
+Pygments~=2.11.2
+python-dateutil~=2.8.2
+pytest~=7.1.1
+requests~=2.27.1
+setuptools~=57.0.0
+xhtml2pdf~=0.2.7
